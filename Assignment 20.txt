@@ -1,0 +1,59 @@
+test1 = 'This is a test of the emergency text system,'
+filee = open('test.txt','w')
+filee.write(test1)
+
+file2 = open('test.txt','r')
+test2 = file2.readline()
+test2
+
+if test1==test2:
+    print('Both are same')
+
+import csv
+rows =[ ['title','author','year'],
+    ['The Weirdstone of Brisingamen','Alan Garner',1960],
+    ['Perdido Street Station','China Miéville',2000],
+    ['Thud!','Terry Pratchett',2005],
+    ['The Spellman Files','Lisa Lutz',2007],
+    ['Small Gods','Terry Pratchett',1992]]
+with open('books.csv','w',newline='') as file:
+    writer = csv.writer(file)
+    writer.writerows(rows)
+
+import sqlite3
+conn = sqlite3.connect('books.db')
+c = conn.cursor()
+
+c.execute('create table books(title varchar(20),author varchar(20), year int)')
+conn.commit()
+
+import pandas as pd
+
+read_books = pd.read_csv('books.csv',encoding='unicode_escape')
+read_books.to_sql('books', conn, if_exists='append', index = False)
+
+c.execute('select title from books order by title asc')
+print(c.fetchall())
+
+c.execute('select title, author,year from books order by year')
+
+
+df = pd.DataFrame(c.fetchall(), columns=['title','author','year'])
+df
+
+8.import sqlalchemy
+engine = sqlalchemy.create_engine("sqlite:///books.db")
+rows = engine.execute('select * from books')
+for i in rows:
+    print(i)
+
+!pip install redis
+
+import redis
+conn = redis.Redis()
+conn.delete('test')
+conn.hmset('test', {'count': 1, 'name': 'Fester Bestertester'})
+conn.hgetall('test')
+
+
+conn.hincrby('test','count', 3)
