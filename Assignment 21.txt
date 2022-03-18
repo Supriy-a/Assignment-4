@@ -1,0 +1,49 @@
+import datetime
+from datetime import date
+now = date.today()
+cur_date = now.isoformat()
+cur_date
+
+
+with open('today.txt','w') as file:
+    file.write(cur_date)
+
+with open('today.txt','r') as file:
+    today_string = file.read()
+today_string
+
+from datetime import datetime
+format = '%Y-%m-%d'
+datetime.strptime(today_string,format)
+
+import os
+os.listdir('.')
+
+import multiprocessing
+
+def printsec(seconds):
+    from datetime import datetime
+    from time import sleep
+    sleep(seconds)
+    print('wait', seconds, 'seconds, time is', datetime.utcnow())
+    
+if __name__ == '__main__':
+    import random    
+    for n in range(3):
+        seconds = random.random()
+        proc = multiprocessing.Process(target=printsec, args=(seconds,))
+        proc.start()
+
+
+!python abc.py
+
+
+my_dob = date(1998,9,9)
+my_dob
+
+
+my_dob.weekday()
+
+from datetime import timedelta
+day10000 = my_dob + timedelta(days=10000)
+day10000
