@@ -1,0 +1,115 @@
+class Thing:
+    pass
+
+print(Thing)
+
+example = Thing()
+print(example)
+
+class Thing2:
+    letters = 'abc'
+Thing2.letters
+
+class Thing3:
+    def __init__(self,letter):
+        self.letter = letter
+    def letters(self):
+        print(self.letter)
+Thing3('xyz').letters()
+
+class Element:
+    def __init__(self,name,symbol,number):
+        self.name = name
+        self.symbol = symbol
+        self.number = number
+    def printThem(self):
+        print(self.name,self.symbol,self.number)
+
+obj = Element('Hydrogen','H',1)
+obj.name
+
+dict = {'name':'Hydrogen', 'symbol':'H','number': 1}
+hydrogen = Element(**dict) # using dictionary unpacking **
+hydrogen.symbol
+
+class Element:
+    def __init__(self,name,symbol,number):
+        self.name = name
+        self.symbol = symbol
+        self.number = number
+    def dump(self):
+        print(self.name,self.symbol,self.number)
+
+hydrogen = Element('Hydrogen','H',1)
+hydrogen.dump()
+
+class Element:
+    def __init__(self,name,symbol,number):
+        self.name = name
+        self.symbol = symbol
+        self.number = number
+    def __str__(self):
+        return ('name=%s, symbol=%s, number=%s'% (self.name, self.symbol, self.number) )
+
+hydrogen = Element('Hydrogen','H',1)
+print(hydrogen)
+
+class Element(): 
+    def __init__(self ,name,symbol,number):
+        self.__name = name
+        self.__symbol = symbol
+        self.__number = number
+    @property
+    def name(self):
+        return (self.__name)
+    @property
+    def symbol(self):
+        return (self.__symbol)
+    @property
+    def number(self):
+        return (self.__number)
+
+hydrogen = Element('Hydrogen','H',1)
+hydrogen.name
+
+class Bear:
+    def eats():
+        print('berries')
+
+class Rabbit:
+    def eats():
+        print('clover')
+
+class Octothorpe:
+    def eats():
+        print('campers')
+
+
+Bear.eats()
+
+Rabbit.eats()
+
+Octothorpe.eats()
+
+class Laser:
+    def does(self):
+        return('disitegrate')
+class Claw:
+    def does(self):
+        return('crush')
+class SmartPhone:
+    def does(self):
+        return('ring')
+        
+class Robot:
+    def __init__(self):
+        self.laser = Laser()
+        self.claw = Claw()
+        self.smartphone = SmartPhone()
+    def does(self):
+        return ('Laser is %s, Claw is %s, SmartPhone is %s' % (self.laser.does(),self.claw.does(),self.smartphone.does()))
+
+robo = Robot()
+
+robo.does()
+
