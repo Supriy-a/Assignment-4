@@ -1,0 +1,17 @@
+!pip install pyinputplus
+
+
+import pyinputplus as pyip
+pyip.inputInt()
+pyip.inputFloat()
+
+pyip.inputInt(min = 0, max =99)
+
+response = pyip.inputNum(allowRegexes=[r'(I|V|X|L|C|D|M)+', r'zero']) # it allowes roman letters as numbers too
+
+response = pyip.inputNum(blockRegexes=[r'[02468]$'])# blocks the even numbers
+
+response = pyip.inputStr(limit=3)
+
+response = pyip.inputStr(limit=3,default='hello')
+response
